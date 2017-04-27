@@ -24,6 +24,7 @@ class PostsNew extends Component {
               type="text"
               className='form-control'
               {...title} />
+            {(title.touched && title.error) && <div className='text-help'>{title.error}</div>}
           </div>
           <div className='form-group'>
             <label htmlFor=''>Categories</label>
@@ -48,7 +49,16 @@ class PostsNew extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {}
+
+  if (!values.title) { errors.title = 'Require' }
+
+  return errors
+}
+
 export default reduxForm({
   form: 'PostsNewForm',
-  fields: ['title', 'categories', 'content']
+  fields: ['title', 'categories', 'content'],
+  validate
 }, null, { createPost })(PostsNew)
