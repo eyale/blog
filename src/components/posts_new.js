@@ -17,7 +17,6 @@ class PostsNew extends Component {
         // with the new path to navigate to
 
         this.context.router.push('/')
-
       })
   }
   render () {
