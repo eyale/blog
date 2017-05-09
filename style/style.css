@@ -2,6 +2,7 @@ form {
   margin: 10px auto;
 }
 
-form a {
+form a,
+.btn-danger {
   margin-left: 5px;
 }

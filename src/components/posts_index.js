@@ -4,7 +4,7 @@ import { fetchPosts } from '../actions/index'
 import { Link } from 'react-router'
 
 class PostsIndex extends Component {
-  componentWillMount() {
+  componentWillMount () {
     this.props.fetchPosts()
   }
 
@@ -12,8 +12,10 @@ class PostsIndex extends Component {
     return this.props.posts.map((post) => {
       return (
         <li className='list-group-item' key={post.id}>
-          <span className='pull-xs-right'>{post.categories}</span>
-          <em>{post.title}</em>
+          <Link to={`posts/${post.id}`}>
+            <em className='pull-xs-right'>{post.categories}</em>
+            <strong>{post.title}</strong>
+          </Link>
         </li>
       )
     })
