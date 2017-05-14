@@ -1,7 +1,26 @@
 import React, { Component, PropTypes } from 'react'
+import _ from 'lodash'
 import { Link } from 'react-router'
 import { reduxForm } from 'redux-form'
 import { createPost } from '../actions'
+
+const FIELDS = {
+  title: {
+    type:'input',
+    label: 'Post Title',
+    id: Math.random()
+  },
+  categories: {
+    type:'input',
+    label: 'Enter category for the Post',
+    id: Math.random()
+  },
+  content: {
+    type:'textarea',
+    label: 'Post Content',
+    id: Math.random()
+  }
+}
 
 class PostsNew extends Component {
   static contextTypes = {
@@ -19,6 +38,23 @@ class PostsNew extends Component {
         this.context.router.push('/')
       })
   }
+
+  renderField(fieldConfig, field) {
+    const fieldHelper = this.props.fields[field]
+
+    return (
+      <div
+        className={`form-group ${ fieldHelper.touched && fieldHelper.invalid ? 'has-danger' : ''}`} key={fieldConfig.id}>
+        <label>{fieldConfig.label}</label>
+        <fieldConfig.type
+          type="text"
+          className='form-control'
+          {...fieldHelper} />
+        {(fieldHelper.touched && fieldHelper.error) && <div className='text-help'>{fieldHelper.error}</div>}
+      </div>
+    )
+  }
+
   render () {
     const {
       fields: { title, categories, content },
@@ -32,30 +68,7 @@ class PostsNew extends Component {
         </div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <h3>Create a New Post</h3>
-          <div className={`form-group ${ title.touched && title.invalid ? 'has-danger' : ''}`}>
-            <label htmlFor=''>Title</label>
-            <input
-              type="text"
-              className='form-control'
-              {...title} />
-            {(title.touched && title.error) && <div className='text-help'>{title.error}</div>}
-          </div>
-          <div className={`form-group ${ categories.touched && categories.invalid ? 'has-danger' : ''}`}>
-            <label htmlFor=''>Categories</label>
-            <input
-              type="text"
-              className='form-control'
-              {...categories} />
-            {(categories.touched && categories.error) && <div className='text-help'>{categories.error}</div>}
-          </div>
-          <div className={`form-group ${ content.touched && content.invalid ? 'has-danger' : ''}`}>
-            <label htmlFor=''>Content</label>
-            <input
-              type="textarea"
-              className='form-control'
-              {...content} />
-            {(content.touched && content.error) && <div className='text-help'>{content.error}</div>}
-          </div>
+          {_.map(FIELDS, this.renderField.bind(this))}
           <button type='submit' className='btn btn-primary'>
             Submit
           </button>
@@ -69,9 +82,11 @@ class PostsNew extends Component {
 function validate(values) {
   const errors = {}
 
-  if (!values.title) { errors.title = 'Require' }
-  if (!values.categories) { errors.categories = 'Require' }
-  if (!values.content) { errors.content = 'Require' }
+  _.each(FIELDS, (type, field) => {
+    if (!values[field]) {
+      errors[field] = `Require field ${field}`
+    }
+  })
 
   return errors
 }
@@ -79,6 +94,6 @@ function validate(values) {
 // export default reduxForm({settings}, mapStateToProps, mapDispatchToProps)(Component)
 export default reduxForm({
   form: 'PostsNewForm',
-  fields: ['title', 'categories', 'content'],
+  fields: _.keys(FIELDS), //Creates an array of the own enumerable property names of object
   validate
 }, null, { createPost })(PostsNew)
