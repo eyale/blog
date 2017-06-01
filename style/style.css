@@ -6,3 +6,7 @@ form a,
 .btn-danger {
   margin-left: 5px;
 }
+
+input[type=checkbox] {
+  margin-right: 10px;
+}
