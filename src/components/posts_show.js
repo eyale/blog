@@ -13,6 +13,7 @@ class PostsShow extends Component {
   }
 
   onDeleteClick () {
+    console.log(this.props)
     this.props.deletePost(this.props.params.id)
       .then(() => { this.context.router.push('/') })
   }
@@ -32,7 +33,7 @@ class PostsShow extends Component {
         <Link
           to='/'
           className='btn btn-danger'
-          onClick={this.onDeleteClick}>
+          onClick={this.onDeleteClick.bind(this)}>
           Delete Post
         </Link>
       </div>

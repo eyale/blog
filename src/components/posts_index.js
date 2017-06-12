@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import SelectedPosts from './selected_posts'
+
 import {
   fetchPosts,
   selectPost,
@@ -21,16 +22,16 @@ class PostsIndex extends Component {
   }
 
   renderPosts () {
-    return this.props.posts.map((post) => {
+    const { posts, selectedPostsIds } = this.props
+
+    return posts.map((post) => {
       return (
         <li className='list-group-item' key={post.id}>
-
           <input
-            checked={_.includes(this.props.selectedPostsIds, post.id)}
+            checked={_.includes(selectedPostsIds, post.id)}
             type='checkbox'
             onChange={this.handlePostSelect.bind(this, post)}
           />
-
           <Link to={`posts/${post.id}`}>
             <em className='pull-xs-right'>{post.categories}</em>
             <strong>{post.title}</strong>
@@ -51,7 +52,8 @@ class PostsIndex extends Component {
           </Link>
         </div>
         <h3>Selected Posts</h3>
-        {/*<SelectedPosts />*/}
+        <hr />
+        <SelectedPosts />
         <hr />
         <h3>Posts</h3>
         <ul className="list-group">

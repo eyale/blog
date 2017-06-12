@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
 
-const postSelector = state => state.posts
-const selectedPostsSelector = state => state.selectedPostIds
+export const postsSelector = state => state.posts
+export const selectedPostsSelector = state => state.selectedPostIds
 
 const getPosts = (posts, selectedPostIds) => {
   //the arguments names in function is my chosen names
@@ -11,7 +11,7 @@ const getPosts = (posts, selectedPostIds) => {
 }
 
 export default createSelector(
-  postSelector,
+  postsSelector,
   selectedPostsSelector,
   getPosts
 )
