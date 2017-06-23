@@ -53,7 +53,7 @@ class PostsIndex extends Component {
         </div>
         <h3>Selected Posts</h3>
         <hr />
-        <SelectedPosts />
+        {/*<SelectedPosts />*/}
         <hr />
         <h3>Posts</h3>
         <ul className="list-group">

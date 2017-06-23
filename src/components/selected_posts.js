@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { selectedPostsSelector } from '../selectors/index'
+import SelectedPostsSelector  from '../selectors'
 
 class SelectedPosts extends Component {
   render () {
@@ -9,6 +9,7 @@ class SelectedPosts extends Component {
     if (!posts) return <div>have no selected posts</div>
 
     if (posts) {
+
       return (
         <ul className='list-group'>
           {posts.map(post => <li className='list-group-item' key={post.id}>{post.title}</li>)}
@@ -20,7 +21,7 @@ class SelectedPosts extends Component {
 
 const mapStateToProps = state => {
   return {
-    posts: selectedPostsSelector(state)
+    posts: SelectedPostsSelector(state)
   }
 }
 
