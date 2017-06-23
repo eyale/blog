@@ -5,6 +5,7 @@ import { selectedPostsSelector } from '../selectors/index'
 class SelectedPosts extends Component {
   render () {
     const { posts } = this.props
+
     if (!posts) return <div>have no selected posts</div>
 
     if (posts) {
