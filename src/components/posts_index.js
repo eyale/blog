@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import SelectedPosts from './selected_posts'
+import SelectedPostsList from './selected_posts'
 
 import {
   fetchPosts,
@@ -53,7 +53,7 @@ class PostsIndex extends Component {
         </div>
         <h3>Selected Posts</h3>
         <hr />
-        {/*<SelectedPosts />*/}
+        <SelectedPostsList />
         <hr />
         <h3>Posts</h3>
         <ul className="list-group">

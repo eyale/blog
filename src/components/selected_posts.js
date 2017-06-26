@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SelectedPostsSelector  from '../selectors'
 
-class SelectedPosts extends Component {
+class SelectedPostsList extends Component {
   render () {
     const { posts } = this.props
 
@@ -25,4 +25,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(SelectedPosts)
+export default connect(mapStateToProps)(SelectedPostsList)
