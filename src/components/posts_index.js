@@ -4,11 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import SelectedPostsList from './selected_posts'
 
-import {
-  fetchPosts,
-  selectPost,
-  deselectPost
-} from '../actions/index'
+import * as actions from '../actions/index'
 
 class PostsIndex extends Component {
   componentWillMount () {
@@ -23,6 +19,8 @@ class PostsIndex extends Component {
 
   renderPosts () {
     const { posts, selectedPostsIds } = this.props
+
+    if (!posts.length) return <div>Please wait Loading Posts ...</div>
 
     return posts.map((post) => {
       return (
@@ -71,4 +69,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts, selectPost, deselectPost })(PostsIndex)
+export default connect(mapStateToProps, actions)(PostsIndex)

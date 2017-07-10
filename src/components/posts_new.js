@@ -44,7 +44,8 @@ class PostsNew extends Component {
 
     return (
       <div
-        className={`form-group ${ fieldHelper.touched && fieldHelper.invalid ? 'has-danger' : ''}`} key={fieldConfig.id}>
+        className={`form-group ${ fieldHelper.touched && fieldHelper.invalid ? 'has-danger' : ''}`}
+        key={fieldConfig.id}>
         <label>{fieldConfig.label}</label>
         <fieldConfig.type
           type='text'
