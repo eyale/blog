@@ -32,8 +32,6 @@ class PostsShow extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { post: state.posts.post }
-}
+const mapStateToProps = (state) => ({ post: state.posts.post })
 
 export default connect(mapStateToProps, actions)(PostsShow)

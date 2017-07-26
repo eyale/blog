@@ -18,8 +18,6 @@ class SelectedPostsList extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { posts: SelectedPostsSelector(state) }
-}
+const mapStateToProps = (state) => ({ posts: SelectedPostsSelector(state) })
 
 export default connect(mapStateToProps)(SelectedPostsList)

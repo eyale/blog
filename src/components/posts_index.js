@@ -62,11 +62,9 @@ class PostsIndex extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    posts: state.posts.all,
-    selectedPostsIds: state.selectedPostsIds
-  }
-}
+const mapStateToProps = (state) => ({
+  posts: state.posts.all,
+  selectedPostsIds: state.selectedPostsIds
+})
 
 export default connect(mapStateToProps, actions)(PostsIndex)
