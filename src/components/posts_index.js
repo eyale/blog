@@ -44,6 +44,11 @@ class PostsIndex extends Component {
       <div>
         <div className='text-xs-right'>
           <Link
+            to='knowledge/sharing'
+            className='btn btn-primary'>
+              Knowledge Sharing
+          </Link>
+          <Link
             to='posts/new'
             className='btn btn-primary'>
               Add a Post
